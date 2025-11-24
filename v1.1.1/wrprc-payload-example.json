@@ -1,0 +1,101 @@
+{
+  "name": "Webshop",
+  "sub": {
+    "legal_name": [
+      "Webshop Holding Company Ltd"
+    ],
+    "id": [
+      {
+        "type": "http://data.europa.eu/eudi/id/LEI",
+        "identifier": "LEIXG-743700EB2QF2J1WRO915"
+      }
+    ]
+  },
+  "country": "FI",
+  "registry_uri": "https://registry.invalid",
+  "service": [
+    {
+      "lang": "en-GB",
+      "value": "Webshop selling stuff."
+    }
+  ],
+  "entitlements": [
+    "https://uri.etsi.org/19475/Entitlement/Service_Provider"
+  ],
+  "privacy_policy": [
+    {
+      "type": "http://data.europa.eu/eudi/policy/privacy-policy",
+      "policyURI": "https://example-company.com/en/privacy-policy"
+    }
+  ],
+  "info_uri": [
+    "https://webshop.invalid"
+  ],
+  "dpa": {
+    "country": "FI",
+    "email": [
+      "report@dpa.invalid"
+    ],
+    "phone": [
+      "+358123456789"
+    ],
+    "uri": [
+      "https://dpa.invalid/report-form"
+    ]
+  },
+  "policy_id": [
+    "0.4.0.19475.3.1"
+  ],
+  "certificate_policy": "https://registrar.invalid/certificate-policy",
+  "iat": 1751100000,
+  "status": {
+    "status_list": {
+      "idx": 0,
+      "uri": "https://registrar.invalid/status-lists/1"
+    }
+  },
+  "act": {
+    "sub": {
+      "id": "LEIXG-1234567890ABCDEFGHIJ",
+      "name": "Intermediary Ltd"
+    }
+  },
+  "credentials": [
+    {
+      "format": "dc+sd-jwt",
+      "meta": "https://credentials.invalid/address-credential",
+      "claim": [
+        {
+          "path": "given_name"
+        },
+        {
+          "path": "family_name"
+        },
+        {
+          "path": "address"
+        }
+      ]
+    },
+    {
+      "format": "dc+sd-jwt",
+      "meta": "https://credentials.invalid/mdl",
+      "claim": [
+        {
+          "path": "given_name"
+        },
+        {
+          "path": "family_name"
+        },
+        {
+          "path": "address"
+        }
+      ]
+    }
+  ],
+  "purpose": [
+    {
+      "lang": "en-GB",
+      "value": "Required for sending parcels."
+    }
+  ]
+}
