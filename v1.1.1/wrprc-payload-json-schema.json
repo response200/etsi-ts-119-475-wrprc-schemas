@@ -1,44 +1,47 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "JSON schema for wallet-relying party registration certificate payload",
-  "anyOf": [
+  "allOf": [
     {
-      "allOf": [
-        {
-          "$ref": "#/$defs/GeneralProvider",
-          "description": "Fields that apply to WRPs having any role."
-        },
-        {
-          "if": {
-            "properties": {
-              "provided_attestations": {}
-            },
-            "required": ["provided_attestations"]
-          },
-          "then": {
-            "$ref": "#/$defs/AttestationProvider"
-          }
-        },
-        {
-          "if": {
-            "properties": {
-              "credentials": {}
-            },
-            "required": ["credentials"]
-          },
-          "then": {
-            "$ref": "#/$defs/ServiceProvider"
+      "$ref": "#/$defs/GeneralProvider"
+    },
+    {
+      "if": {
+        "properties": {
+          "entitlements": {
+            "contains": {
+              "enum": [
+                "https://uri.etsi.org/19475/Entitlement/QEAA_Provider",
+                "0.4.0.19475.1.2",
+                "https://uri.etsi.org/19475/Entitlement/Non_Q_EAA_Provider",
+                "0.4.0.19475.1.3",
+                "https://uri.etsi.org/19475/Entitlement/PUB_EAA_Provider",
+                "0.4.0.19475.1.4"
+              ]
+            }
           }
         }
-      ]
+      },
+      "then": {
+        "$ref": "#/$defs/AttestationProvider"
+      }
     },
     {
-      "$ref": "#/$defs/AttestationProvider",
-      "description": "Fields that apply to WRPs having QEAA_Provider, Non_Q_EAA_Provider or PUB_EAA_Provider role."
-    },
-    {
-      "$ref": "#/$defs/ServiceProvider",
-      "description": "Fields that apply to WRPs having Service_Provider role."
+      "if": {
+        "properties": {
+          "entitlements": {
+            "contains": {
+              "enum": [
+                "https://uri.etsi.org/19475/Entitlement/Service_Provider",
+                "0.4.0.19475.1.1"
+              ]
+            }
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/ServiceProvider"
+      }
     }
   ],
   "$defs": {
