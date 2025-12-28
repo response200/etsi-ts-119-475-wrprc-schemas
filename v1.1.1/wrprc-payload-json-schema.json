@@ -44,6 +44,7 @@
       }
     }
   ],
+  "unevaluatedProperties": false,
   "$defs": {
     "GeneralProvider": {
       "type": "object",
@@ -87,6 +88,7 @@
           "minItems": 1,
           "items": {
             "type": "object",
+            "unevaluatedProperties": false,
             "required": [
               "lang",
               "value"
@@ -143,6 +145,7 @@
           "minItems": 1,
           "items": {
             "type": "object",
+            "unevaluatedProperties": false,
             "required": [
               "type",
               "policyURI"
@@ -173,6 +176,7 @@
         },
         "dpa": {
           "type": "object",
+          "unevaluatedProperties": false,
           "required": [
             "country",
             "email",
@@ -231,12 +235,14 @@
         },
         "status": {
           "type": "object",
+          "unevaluatedProperties": false,
           "required": [
             "status_list"
           ],
           "properties": {
             "status_list": {
               "type": "object",
+              "unevaluatedProperties": false,
               "required": [
                 "idx",
                 "uri"
@@ -273,12 +279,14 @@
         },
         "act": {
           "type": "object",
+          "unevaluatedProperties": false,
           "required": [
             "sub"
           ],
           "properties": {
             "sub": {
               "type": "object",
+              "unevaluatedProperties": false,
               "required": [
                 "id",
                 "name"
@@ -342,6 +350,7 @@
               "minItems": 1,
               "items": {
                 "type": "object",
+                "unevaluatedProperties": false,
                 "required": [
                   "lang",
                   "value"
@@ -369,6 +378,7 @@
     },
     "LegalPersonSub": {
       "type": "object",
+      "unevaluatedProperties": false,
       "required": [
         "legal_name",
         "id"
@@ -392,6 +402,7 @@
     },
     "LegalPersonIdentifier": {
       "type": "object",
+      "unevaluatedProperties": false,
       "required": [
         "type",
         "identifier"
@@ -415,6 +426,7 @@
     },
     "NaturalPersonSub": {
       "type": "object",
+      "unevaluatedProperties": false,
       "required": [
         "given_name",
         "family_name",
@@ -438,6 +450,7 @@
     },
     "NaturalPersonIdentifier": {
       "type": "object",
+      "unevaluatedProperties": false,
       "required": [
         "type",
         "identifier"
@@ -457,6 +470,7 @@
     },
     "Credential": {
       "type": "object",
+      "unevaluatedProperties": false,
       "required": [
         "format",
         "meta"
@@ -475,6 +489,7 @@
           "minItems": 0,
           "items": {
             "type": "object",
+            "unevaluatedProperties": false,
             "required": [
               "path"
             ],
