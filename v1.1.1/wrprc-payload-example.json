@@ -77,8 +77,8 @@
       ]
     },
     {
-      "format": "dc+sd-jwt",
-      "meta": "https://credentials.invalid/mdl",
+      "format": "mso_mdoc",
+      "meta": "org.iso.18013.5.1.mDL",
       "claim": [
         {
           "path": "given_name"
