@@ -1,0 +1,539 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JSON schema for wallet-relying party registration certificate payload",
+  "allOf": [
+    {
+      "$ref": "#/$defs/GeneralProvider"
+    },
+    {
+      "if": {
+        "properties": {
+          "entitlements": {
+            "contains": {
+              "enum": [
+                "https://uri.etsi.org/19475/Entitlement/QEAA_Provider",
+                "0.4.0.19475.1.2",
+                "https://uri.etsi.org/19475/Entitlement/Non_Q_EAA_Provider",
+                "0.4.0.19475.1.3",
+                "https://uri.etsi.org/19475/Entitlement/PUB_EAA_Provider",
+                "0.4.0.19475.1.4"
+              ]
+            }
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/AttestationProvider"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "entitlements": {
+            "contains": {
+              "enum": [
+                "https://uri.etsi.org/19475/Entitlement/Service_Provider",
+                "0.4.0.19475.1.1"
+              ]
+            }
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/ServiceProvider"
+      }
+    }
+  ],
+  "unevaluatedProperties": false,
+  "$defs": {
+    "GeneralProvider": {
+      "type": "object",
+      "description": "Fields that apply to WRPs having any role.",
+      "required": [
+        "name",
+        "wrp",
+        "country",
+        "registry_uri",
+        "srv_description",
+        "entitlements",
+        "privacy_policy",
+        "info_uri",
+        "supervisory_authority",
+        "policy_id",
+        "certificate_policy",
+        "iat",
+        "status",
+        "public_body",
+        "support_uri"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "wrp": {
+          "oneOf": [
+            { "$ref": "#/$defs/LegalPerson" },
+            { "$ref": "#/$defs/NaturalPerson" }
+          ]
+        },
+        "country": {
+          "type": "string",
+          "description": "Specifies the alpha-2 country code according to ISO 3166-1 [8] of the country in which the legal entity is established, or the string `EU` for providers operating on a European level."
+        },
+        "registry_uri": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL pointing to the national registry API endpoint of the registered WRP."
+        },
+        "srv_description": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "unevaluatedProperties": false,
+            "required": [
+              "lang",
+              "content"
+            ],
+            "properties": {
+              "lang": {
+                "type": "string",
+                "description": "Language identifier, referring the BCP47 language tag format defined in RFC 5646"
+              },
+              "content": {
+                "type": "string",
+                "description": "The localized text as a string."
+              }
+            }
+          },
+          "description": "Descriptions of the services provided by the WRP."
+        },
+        "entitlements": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": [
+              "https://uri.etsi.org/19475/Entitlement/Service_Provider",
+              "0.4.0.19475.1.1",
+              "https://uri.etsi.org/19475/Entitlement/QEAA_Provider",
+              "0.4.0.19475.1.2",
+              "https://uri.etsi.org/19475/Entitlement/Non_Q_EAA_Provider",
+              "0.4.0.19475.1.3",
+              "https://uri.etsi.org/19475/Entitlement/PUB_EAA_Provider",
+              "0.4.0.19475.1.4",
+              "https://uri.etsi.org/19475/Entitlement/PID_Provider",
+              "0.4.0.19475.1.5",
+              "https://uri.etsi.org/19475/Entitlement/QCert_for_ESeal_Provider",
+              "0.4.0.19475.1.6",
+              "https://uri.etsi.org/19475/Entitlement/QCert_for_ESig_Provider",
+              "0.4.0.19475.1.7",
+              "https://uri.etsi.org/19475/Entitlement/rQSealCDs_Provider",
+              "0.4.0.19475.1.8",
+              "https://uri.etsi.org/19475/Entitlement/rQSigCDs_Provider",
+              "0.4.0.19475.1.9",
+              "https://uri.etsi.org/19475/Entitlement/ESig_ESeal_Creation_Provider",
+              "0.4.0.19475.1.10",
+              "https://uri.etsi.org/19475/SubEntitlement/psp/psp-as",
+              "https://uri.etsi.org/19475/SubEntitlement/psp/psp-pi",
+              "https://uri.etsi.org/19475/SubEntitlement/psp/psp-ai",
+              "https://uri.etsi.org/19475/SubEntitlement/psp/psp-ic",
+              "https://uri.etsi.org/19475/SubEntitlement/psp/unspecified"
+            ]
+          }
+        },
+        "privacy_policy": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "unevaluatedProperties": false,
+            "required": [
+              "type",
+              "policy_uri"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "format": "uri",
+                "const": "http://data.europa.eu/eudi/policy/privacy-policy",
+                "description": "The type of the policy in form of a URI according to IETF RFC 8820 [13], whereas the following URIs are defined in the present document: http://data.europa.eu/eudi/policy/privacy-policy - is a Privacy Policy."
+              },
+              "policy_uri": {
+                "type": "string",
+                "format": "uri",
+                "description": "The policy URI in form of a URL according to IETF RFC 8820 [13] where the policy is published."
+              }
+            }
+          }
+        },
+        "info_uri": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "format": "uri",
+            "description": "Specifies one or more Unique Resource Identifiers (URIs) according to IETF RFC 8820 [13] with webpages for information about the legal entity."
+          }
+        },
+        "supervisory_authority": {
+          "type": "object",
+          "unevaluatedProperties": false,
+          "required": [
+            "name",
+            "country"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "country": {
+              "type": "string",
+              "description": "Specifies the alpha-2 country code according to ISO 3166-1 [8] of the country in which the legal entity is established, or the string `EU` for providers operating on a European level."
+            },
+            "email": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "format": "email"
+              },
+              "description": "An e-mail address of that Data Protection Authority, on which the Data Protection Authority is prepared to receive reports about suspicious attribute presentation requests from Users."
+            },
+            "phone": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string"
+              },
+              "description": "A telephone number of that Data Protection Authority, on which the Data Protection Authority is prepared to receive reports about suspicious attribute presentation requests from Users."
+            },
+            "form_uri": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "description": "The URL of web form provided by the Data Protection Authority supervising the Relying Party, which Users can use to report suspicious attribute presentation requests."
+            }
+          },
+          "anyOf": [
+            {
+              "required": ["email"]
+            },
+            {
+              "required": ["phone"]
+            },
+            {
+              "required": ["form_uri"]
+            }
+          ]
+        },
+        "policy_id": {
+          "type": "string",
+          "description": "Policy identifier as defined in clause 6.1.3."
+        },
+        "certificate_policy": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the certificate policy and certificate practice statement."
+        },
+        "iat": {
+          "type": "number",
+          "description": "Unix timestamp indicating when the WRPRC was issued."
+        },
+        "status": {
+          "type": "object",
+          "unevaluatedProperties": false,
+          "required": [
+            "status_list"
+          ],
+          "properties": {
+            "status_list": {
+              "type": "object",
+              "unevaluatedProperties": false,
+              "required": [
+                "idx",
+                "uri"
+              ],
+              "properties": {
+                "idx": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "uri": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              }
+            }
+          },
+          "description": "A URI to a status list presenting information about validity of the WRPRC."
+        },
+        "public_body": {
+          "type": "boolean",
+          "description": "The WRP is a public sector body"
+        },
+        "exp": {
+          "type": "number",
+          "description": "Expiration time of the WRPRC as a Unix timestamp."
+        },
+        "support_uri": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          },
+          "description": "URLs or email addresses to use in data deletion or portability requests related to the WRP"
+        },
+        "uses_intermediary": {
+          "type": "object",
+          "unevaluatedProperties": false,
+          "required": [
+            "id",
+            "name"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Identifier of the intermediary as specified by the intermediary WRPAC"
+            },
+            "name": {
+              "type": "string",
+              "description": "CommonName of the intermediary as specified by the intermediary WRPAC"
+            }
+          }
+        }
+      }
+    },
+    "AttestationProvider": {
+      "allOf": [
+        { "$ref": "#/$defs/GeneralProvider" },
+        {
+          "type": "object",
+          "description": "Fields that apply to WRPs having QEAA_Provider, Non_Q_EAA_Provider or PUB_EAA_Provider role.",
+          "required": [
+            "provides_attestations"
+          ],
+          "properties": {
+            "provides_attestations": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "unevaluatedProperties": false,
+                "required": [
+                  "format",
+                  "meta"
+                ],
+                "properties": {
+                  "format": {
+                    "type": "string",
+                    "description": "Format of the attestation."
+                  },
+                  "meta": {
+                    "type": "object",
+                    "description": "Object defining additional properties. The properties of this object are defined per Credential Format - see [OID4VP] Section 6.1 and annex B.3.5 for SD-JWT VC format, and annex B2.3 for ISO mdoc format."
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ServiceProvider": {
+      "allOf": [
+        { "$ref": "#/$defs/GeneralProvider" },
+        {
+          "type": "object",
+          "description": "Fields that apply to WRPs having Service_Provider role.",
+          "required": [
+            "credentials",
+            "purpose",
+            "intended_use_id"
+          ],
+          "properties": {
+            "credentials": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "unevaluatedProperties": false,
+                "required": [
+                  "format",
+                  "meta",
+                  "claims"
+                ],
+                "properties": {
+                  "format": {
+                    "type": "string",
+                    "description": "Format of the attestation."
+                  },
+                  "meta": {
+                    "type": "object",
+                    "description": "Object defining additional properties. The properties of this object are defined per Credential Format - see [OID4VP] Section 6.1 and annex B.3.5 for SD-JWT VC format, and annex B2.3 for ISO mdoc format."
+                  },
+                  "claims": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                      "type": "object",
+                      "unevaluatedProperties": false,
+                      "required": [
+                        "path"
+                      ],
+                      "properties": {
+                        "path": {
+                          "type": "array",
+                          "minItems": 1,
+                          "items": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              {
+                                "type": "null"
+                              },
+                              {
+                                "type": "integer",
+                                "minimum": 0
+                              }
+                            ]
+                          },
+                          "description": "A path pointer that specifies the path to a claim within the Credential. A path pointer must be a non-empty array of strings, nulls and non-negative integers."
+                        }
+                      }
+                    },
+                    "description": "Array of objects that specifies attributes in the requested attestation. If not available, all attributes are requested."
+                  }
+                }
+              }
+            },
+            "purpose": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "unevaluatedProperties": false,
+                "required": [
+                  "lang",
+                  "content"
+                ],
+                "properties": {
+                  "lang": {
+                    "type": "string",
+                    "description": "Language identifier, referring the BCP47 language tag format defined in RFC 5646"
+                  },
+                  "content": {
+                    "type": "string",
+                    "description": "The localized text as a string."
+                  }
+                }
+              },
+              "description": "One or more purposes of the intended data processing according to Article 5 1. (b) of Regulation (EU) 2016/679 [i.19]."
+            },
+            "intended_use_id": {
+              "type": "string",
+              "description": "Registrar-provided unique identifier of the registered intended use."
+            }
+          }
+        }
+      ]
+    },
+    "LegalPerson": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "required": [
+        "legal_name",
+        "id"
+      ],
+      "properties": {
+        "legal_name": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "id": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/LegalPersonIdentifier"
+          }
+        }
+      }
+    },
+    "LegalPersonIdentifier": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "required": [
+        "type",
+        "identifier"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "http://data.europa.eu/eudi/id/EORI-No",
+            "http://data.europa.eu/eudi/id/LEI",
+            "http://data.europa.eu/eudi/id/EUID",
+            "http://data.europa.eu/eudi/id/VATIN",
+            "http://data.europa.eu/eudi/id/TIN",
+            "http://data.europa.eu/eudi/id/Excise"
+          ]
+        },
+        "identifier": {
+          "type": "string"
+        }
+      }
+    },
+    "NaturalPerson": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "required": [
+        "given_name",
+        "family_name",
+        "id"
+      ],
+      "properties": {
+        "given_name": {
+          "type": "string"
+        },
+        "family_name": {
+          "type": "string"
+        },
+        "id": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/NaturalPersonIdentifier"
+          }
+        }
+      }
+    },
+    "NaturalPersonIdentifier": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "required": [
+        "type",
+        "identifier"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "http://data.europa.eu/eudi/id/VATIN",
+            "http://data.europa.eu/eudi/id/TIN"
+          ]
+        },
+        "identifier": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

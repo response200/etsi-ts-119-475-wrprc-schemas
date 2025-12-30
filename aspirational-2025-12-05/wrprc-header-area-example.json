@@ -1,0 +1,5 @@
+{
+  "typ": "rc-wrp+jwt",
+  "alg": "ES384",
+  "x5c": ["QmFzZTY0LWVuY29kZWQgWC41MDkgY2VydGlmaWNhdGUgaW4gREVSIGZvcm1hdA=="]
+}

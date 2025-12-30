@@ -1,0 +1,3 @@
+# Aspirational WRPRC schemas and examples based on data structure change suggestions delivered to ETSI on 2025-12-05
+
+This directory contains aspirational schemas of the WRPRC header area and the WRPRC payload, and examples of header areas and payloads matching the aspirational schemas. The schemas are based on my comments on version 1.1.1 of the [ETSI TS 119 475](https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=69585) standard. The comments were delivered to ETSI on 2025-12-05. The schemas and the examples in this directory describe the WRPRC header area and the WRPRC payload in the form they would have, if all my suggested data structure changes were accepted by ETSI.

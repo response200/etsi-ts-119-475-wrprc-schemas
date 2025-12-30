@@ -1,0 +1,108 @@
+{
+  "name": "Webshop",
+  "wrp": {
+    "legal_name": [
+      "Webshop Holding Company Ltd"
+    ],
+    "id": [
+      {
+        "type": "http://data.europa.eu/eudi/id/LEI",
+        "identifier": "LEIXG-743700EB2QF2J1WRO915"
+      }
+    ]
+  },
+  "country": "FI",
+  "registry_uri": "https://registry.invalid",
+  "srv_description": [
+    {
+      "lang": "en-GB",
+      "content": "Webshop selling stuff."
+    }
+  ],
+  "entitlements": [
+    "https://uri.etsi.org/19475/Entitlement/Service_Provider"
+  ],
+  "privacy_policy": [
+    {
+      "type": "http://data.europa.eu/eudi/policy/privacy-policy",
+      "policy_uri": "https://example-company.com/en/privacy-policy"
+    }
+  ],
+  "info_uri": [
+    "https://webshop.invalid"
+  ],
+  "supervisory_authority": {
+    "name": "Data Protection Ombudsman",
+    "country": "FI",
+    "email": [
+      "report@dpa.invalid"
+    ],
+    "phone": [
+      "+358123456789"
+    ],
+    "form_uri": [
+      "https://dpa.invalid/report-form"
+    ]
+  },
+  "policy_id": "0.4.0.19475.3.1",
+  "certificate_policy": "https://registrar.invalid/certificate-policy",
+  "iat": 1751100000,
+  "status": {
+    "status_list": {
+      "idx": 0,
+      "uri": "https://registrar.invalid/status-lists/1"
+    }
+  },
+  "public_body": false,
+  "support_uri": [
+    "https://webshop.invalid/data-deletion",
+    "data-deletion@webshop.invalid"
+  ],
+  "uses_intermediary": {
+    "id": "LEIXG-1234567890ABCDEFGHIJ",
+    "name": "Intermediary Ltd"
+  },
+  "credentials": [
+    {
+      "format": "dc+sd-jwt",
+      "meta": {
+        "vct_values": ["https://credentials.invalid/address-credential"]
+      },
+      "claims": [
+        {
+          "path": ["given_name"]
+        },
+        {
+          "path": ["family_name"]
+        },
+        {
+          "path": ["address"]
+        }
+      ]
+    },
+    {
+      "format": "mso_mdoc",
+      "meta": {
+        "doctype_value": "org.iso.18013.5.1.mDL"
+      },
+      "claims": [
+        {
+          "path": ["given_name"]
+        },
+        {
+          "path": ["family_name"]
+        },
+        {
+          "path": ["address"]
+        }
+      ]
+    }
+  ],
+  "purpose": [
+    {
+      "lang": "en-GB",
+      "content": "Required for sending parcels."
+    }
+  ],
+  "intended_use_id": "956be599-9658-48c7-b410-0fbd073b6afc"
+}

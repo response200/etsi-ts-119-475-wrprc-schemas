@@ -10,6 +10,12 @@ ETSI TS 119 475 is a versioned standard and this repository reflects that. The s
 
 Version directories might contain notes in a README.md file with explanations of the known limitations or issues, if any, in the schemas, examples or in the standard version itself.
 
+The `aspirational-2025-12-05` directory  contains versions of the schemas and examples which are based on my comments on version 1.1.1 of the standard and that were delivered to ETSI on 2025-12-05. The schemas and the examples in the directory describe the WRPRC header area and the WRPRC payload in the form they would have, if all my suggested data structure changes were accepted by ETSI.
+
+## Feedback and contributions
+
+All feedback, corrections and contributions are welcome. Those can be given in the form of issues and pull requests in this repository or by contacting me directly via eg. e-mail.
+
 ## Licence
 
 [BSD 3-Clause](LICENCE.md). Authored by Joel Posti.

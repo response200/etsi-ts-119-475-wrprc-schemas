@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JSON schema for wallet-relying party registration certificate header area",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "required": [
+    "typ",
+    "alg",
+    "x5c"
+  ],
+  "properties": {
+    "typ": {
+      "type": "string",
+      "const": "rc-wrp+jwt"
+    },
+    "alg": {
+      "type": "string",
+      "enum": [
+        "ES256",
+        "ES384",
+        "ES512",
+        "PS256",
+        "PS384",
+        "PS512",
+        "RS256",
+        "RS384",
+        "RS512"
+      ],
+      "description": "Indicates the algorithm used to sign the JWT as defined in clause 5.1.2 of ETSI TS 119 182-1 [18]."
+    },
+    "x5c": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "contentEncoding": "base64",
+        "description": "Base64-encoded X.509 certificate in DER format."
+      },
+      "description": "Contains the whole certificate chain to verify the JWT or CWT as defined in clause 5.1.8 of ETSI TS 119 182-1 [18]."
+    }
+  }
+}
